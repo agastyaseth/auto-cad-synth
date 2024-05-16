@@ -1,0 +1,443 @@
+[
+    {
+        "command": "set_dont_touch",
+        "description": "Prevents the synthesis tool from optimizing or moving specified instances or nets.",
+        "value_type": "{object}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_dont_touch <objects>",
+        "query": "Given the following TCL file, optimize for high performance by preventing the synthesis tool from optimizing or moving the {object} instance or net. Use the `set_dont_touch` command for this purpose.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_dont_use",
+        "description": "Specifies library cells that the synthesis tool should not use.",
+        "value_type": "{cell_names}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_dont_use <cell_names>",
+        "query": "Given the following TCL file, optimize for low power consumption by specifying that the synthesis tool should not use the {cell_name} cell.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_driving_cell",
+        "description": "Assigns a driving cell to an input port to model its drive strength.",
+        "value_type": "{cell_name, port_name}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_driving_cell -lib_cell <cell_name> -port <port_name>",
+        "query": "Given the following TCL file, optimize for low power consumption by assigning the driving cell {cell_name} to the input port {port_name} to model its drive strength.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_drive",
+        "description": "Specifies the drive strength of an input port.",
+        "value_type": "{float, port_name}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_drive <drive_strength> <port_name>",
+        "query": "Given the following TCL file, optimize for high performance by setting the drive strength of the input port {port_name} to {int}.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_load",
+        "description": "Specifies load on an output port or net.",
+        "value_type": "{float, object}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_load <load_value> <port_or_net>",
+        "query": "Given the following TCL file, optimize for minimal area by specifying a load of {float} on the {port_or_net}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_fanout_load",
+        "description": "Specifies the expected fanout load for an output pin.",
+        "value_type": "{float, pin_name}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_fanout_load <fanout_load> <pin_name>",
+        "query": "Given the following TCL file, optimize for minimal area by setting the expected fanout load for the output pin {pin_name} to {float}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_connection_class",
+        "description": "Specifies the connection class for ports or pins to guide compilation efforts.",
+        "value_type": "{class_name, port_or_pin_names}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_connection_class <class_name> <port_or_pin_names>",
+        "query": "Given the following TCL file, optimize for high performance by specifying the connection class {class_name} for the {port_or_pin_names} ports or pins.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_case_analysis",
+        "description": "Forces a particular logical value on specific nets or ports during timing analysis.",
+        "value_type": "{bool, object}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_case_analysis <value> <object>",
+        "query": "Given the following TCL file, optimize for minimal area by setting a forced logical value of {int}/{float} on the {object} net/port during timing analysis.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_leakage_optimization",
+        "description": "Optimizes cells for leakage power without degrading performance significantly.",
+        "value_type": "{bool}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_leakage_optimization <enable>",
+        "query": "Given the following TCL file, optimize for high performance by enabling leakage power optimization.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_multi_vth_constraint",
+        "description": "Applies threshold voltage constraints to optimize for power, speed, or area.",
+        "value_type": "{voltage_thresholds}",
+        "constraint_type": "Standard cell",
+        "syntax": "set_multi_vth_constraint <voltage_thresholds>",
+        "query": "Given the following TCL file, optimize for minimal area by setting the threshold voltage constraints to {voltage_thresholds}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "create_clock",
+        "description": "Defines a clock.",
+        "value_type": "{name, period, wave_form, object}",
+        "constraint_type": "Timing",
+        "syntax": "create_clock -name <clock_name> -period <period> -waveform <wave_form> <object>",
+        "query": "Given the following TCL file, optimize for high performance by defining a clock named {clock_name} with a period of {float} ns and a waveform of {list_of_floats} on {object}.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "create_generated_clock",
+        "description": "Defines a clock that is generated by the design.",
+        "value_type": "{name, source_pin, divide_factor, multiply_factor, edges, object}",
+        "constraint_type": "Timing",
+        "syntax": "create_generated_clock -name <clock_name> -source <source_pin> -divide_by <divide_factor> -multiply_by <multiply_factor> -edges <edges> <object>",
+        "query": "Given the following TCL file, optimize for high performance by defining a generated clock named {clock_name} with a source pin {source_pin}, divide factor {int}, multiply factor {int}, and edges {edges} on {object}.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_clock_uncertainty",
+        "description": "Specifies uncertainty for clock timing.",
+        "value_type": "{float, clock_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_clock_uncertainty <uncertainty_value> -clock <clock_name>",
+        "query": "Given the following TCL file, optimize for high performance by setting the clock uncertainty for the {clock_name} clock to {float} ns.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_clock_latency",
+        "description": "Defines clock latency.",
+        "value_type": "{float, clock_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_clock_latency <latency_value> -clock <clock_name>",
+        "query": "Given the following TCL file, optimize for high performance by setting the clock latency for the {clock_name} clock to {float} ns.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_clock_transition",
+        "description": "Sets clock transition times.",
+        "value_type": "{float,clock_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_clock_transition <transition_time> -clock <clock_name>",
+        "query": "Given the following TCL file, optimize for minimal area by setting the clock transition time for the {clock_name} clock to {float} ns.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_input_delay",
+        "description": "Specifies input delay with respect to a clock.",
+        "value_type": "{float, clock_name, port_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_input_delay <delay_value> -clock <clock_name> <port_name>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the input delay with respect to the {clock_name} clock for the {port_name} port to {float} ns.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_output_delay",
+        "description": "Specifies output delay with respect to a clock.",
+        "value_type": "{float, clock_name, port_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_output_delay <delay_value> -clock <clock_name> <port_name>",
+        "query": "Given the following TCL file, optimize for high performance by specifying an output delay of {float} ns with respect to the {clock_name} clock for the {port_name} port.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_max_delay",
+        "description": "Sets the maximum delay for a path.",
+        "value_type": "{float, from_object, to_object}",
+        "constraint_type": "Timing",
+        "syntax": "set_max_delay <delay_value> -from <from_object> -to <to_object>",
+        "query": "Given the following TCL file, optimize for high performance by setting the maximum delay for the path from {from_object} to {to_object} to {float} ns.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_min_delay",
+        "description": "Sets the minimum delay for a path.",
+        "value_type": "{float, from_object, to_object}",
+        "constraint_type": "Timing",
+        "syntax": "set_min_delay <delay_value> -from <from_object> -to <to_object>",
+        "query": "Given the following TCL file, optimize for high performance by setting the minimum delay for the path from {from_object} to {to_object} to {float} ns.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_false_path",
+        "description": "Specifies a false timing path.",
+        "value_type": "{object, object}",
+        "constraint_type": "Timing",
+        "syntax": "set_false_path -from <source_objects> -to <destination_objects>",
+        "query": "Given the following TCL file, optimize for low power consumption by specifying a false timing path from {source_objects} to {destination_objects}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_multicycle_path",
+        "description": "Sets up a multi-cycle path.",
+        "value_type": "{int, from_object, to_object}",
+        "constraint_type": "Timing",
+        "syntax": "set_multicycle_path <cycle_count> -from <from_object> -to <to_object>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting a multi-cycle path from {from_object} to {to_object} with a cycle count of {int}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_clock_groups",
+        "description": "Groups clocks together to define timing relationships.",
+        "value_type": "{clock_groups}",
+        "constraint_type": "Timing",
+        "syntax": "set_clock_groups -group <clock_name> -group <clock_name> -asynchronous",
+        "query": "Given the following TCL file, optimize for low power consumption by grouping the clocks {clock_name1} and {clock_name2} together as asynchronous clocks to define their timing relationship.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_propagated_clock",
+        "description": "Defines clocks to be propagated during synthesis.",
+        "value_type": "{clock_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_propagated_clock <clock_name>",
+        "query": "Given the following TCL file, optimize for low power consumption by defining the clock {clock_name} to be propagated during synthesis.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_max_time_borrow",
+        "description": "Defines the maximum time borrowing for a sequential path.",
+        "value_type": "{float}",
+        "constraint_type": "Timing",
+        "syntax": "set_max_time_borrow <time>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the maximum time borrowing for a sequential path to {float} ns.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_max_transition",
+        "description": "Specifies the maximum transition time on a net.",
+        "value_type": "{float}",
+        "constraint_type": "Timing",
+        "syntax": "set_max_transition <transition_time>",
+        "query": "Given the following TCL file, optimize for minimal area by specifying the maximum transition time on a net to {float} ns.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_max_skew",
+        "description": "Sets the maximum skew allowed between clock signals.",
+        "value_type": "{float}",
+        "constraint_type": "Timing",
+        "syntax": "set_max_skew <skew_value>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the maximum skew allowed between clock signals to {float} ns.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_bus_skew",
+        "description": "Manages skew within buses to meet setup and hold times.",
+        "value_type": "{skew_values, bus_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_bus_skew <skew_values> <bus_name>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the skew for the {bus_name} bus to {skew_values}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_hold_fixing",
+        "description": "Adjusts the design to fix hold timing violations.",
+        "value_type": "{bool}",
+        "constraint_type": "Timing",
+        "syntax": "set_hold_fixing <enable>",
+        "query": "Given the following TCL file, optimize for minimal area by adjusting the design to fix hold timing violations. Enable hold fixing by using the set_hold_fixing command.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_fix_hold",
+        "description": "Synonym for hold time adjustments in certain tool versions.",
+        "value_type": "{None}",
+        "constraint_type": "Timing",
+        "syntax": "set_fix_hold",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the hold time adjustments using the `set_fix_hold` command.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_min_pulse_width",
+        "description": "Ensures signals meet the minimum pulse width requirements.",
+        "value_type": "{float, signal_name}",
+        "constraint_type": "Timing",
+        "syntax": "set_min_pulse_width <pulse_width> <signal_name>",
+        "query": "Given the following TCL file, optimize for low power consumption by ensuring that the signal {signal_name} meets the minimum pulse width requirement of {pulse_width}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_signal_integrity_effort",
+        "description": "Specifies the level of effort the tool should use to analyze and correct signal integrity issues.",
+        "value_type": "{level}",
+        "constraint_type": "Timing",
+        "syntax": "set_signal_integrity_effort <level>",
+        "query": "Given the following TCL file, optimize for high performance by setting the signal integrity effort level to {level}.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_power_optimization",
+        "description": "Enables or configures various power optimization techniques such as gate resizing, Vt swapping, or power gating.",
+        "value_type": "{bool}",
+        "constraint_type": "Timing",
+        "syntax": "set_power_optimization <enable>",
+        "query": "Given the following TCL file, optimize for high performance by enabling power optimization techniques.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_area_group",
+        "description": "Defines area constraints for specific groups of cells to control placement density or meet floorplanning requirements.",
+        "value_type": "{group_name, cell_names}",
+        "constraint_type": "Timing",
+        "syntax": "set_area_group <group_name> <cell_names>",
+        "query": "Given the following TCL file, optimize for high performance by defining an area group named {group_name} for the {cell_name} cells to control placement density.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_global_optimization",
+        "description": "Enables or tunes global optimization features that cross module boundaries.",
+        "value_type": "{bool}",
+        "constraint_type": "Timing",
+        "syntax": "set_global_optimization <enable>",
+        "query": "Given the following TCL file, optimize for minimal area by enabling global optimization features that cross module boundaries.\n",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_max_area",
+        "description": "Specifies the maximum allowable area.",
+        "value_type": "{float}",
+        "constraint_type": "Optimization",
+        "syntax": "set_max_area <area_value>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the maximum allowable area to {float}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_max_fanout",
+        "description": "Specifies the maximum allowable fanout per gate.",
+        "value_type": "{int, (instance_name)}",
+        "constraint_type": "Optimization",
+        "syntax": "set_max_fanout <fanout_value> [instance_name]",
+        "query": "Given the following TCL file, optimize for minimal area by setting the maximum allowable fanout per gate to {int} for the instance {instance_name}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_max_capacitance",
+        "description": "Specifies the maximum capacitance on a net.",
+        "value_type": "{float}",
+        "constraint_type": "Optimization",
+        "syntax": "set_max_capacitance <capacitance_value>",
+        "query": "Given the following TCL file, optimize for high performance by specifying the maximum capacitance on a net to be {float} picofarads.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_min_capacitance",
+        "description": "Sets the minimum capacitance requirements for a net.",
+        "value_type": "{float}",
+        "constraint_type": "Optimization",
+        "syntax": "set_min_capacitance <capacitance_value>",
+        "query": "Given the following TCL file, optimize for high performance by setting the minimum capacitance requirements for the net to {float} pF.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_timing_derate",
+        "description": "Derates timing by a certain factor to account for variations.",
+        "value_type": "{float}",
+        "constraint_type": "Optimization",
+        "syntax": "set_timing_derate <factor>",
+        "query": "Given the following TCL file, optimize for low power consumption by setting the timing derate factor to {float}.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_cost_priority",
+        "description": "Prioritizes certain areas of the design when balancing constraints.",
+        "value_type": "{priority_level}",
+        "constraint_type": "Optimization",
+        "syntax": "set_cost_priority <priority_level>",
+        "query": "Given the following TCL file, optimize for minimal area by setting the cost priority to {priority_level}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "disable_cost_function",
+        "description": "Turns off cost functions to focus on other optimization goals.",
+        "value_type": "{None}",
+        "constraint_type": "Optimization",
+        "syntax": "disable_cost_function",
+        "query": "Given the following TCL file, optimize for high performance by turning off cost functions using the disable_cost_function command.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_leakage_optimization",
+        "description": "Specifies optimization targets for leakage power.",
+        "value_type": "{bool}",
+        "constraint_type": "Optimization",
+        "syntax": "set_leakage_optimization <enable>",
+        "query": "Given the following TCL file, optimize for minimal area by specifying that leakage power optimization is {boolean}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_dynamic_optimization",
+        "description": "Enables dynamic optimization features during synthesis.",
+        "value_type": "{bool}",
+        "constraint_type": "Optimization",
+        "syntax": "set_dynamic_optimization <enable>",
+        "query": "Given the following TCL file, optimize for low power consumption by enabling dynamic optimization features during synthesis.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_multi_vth_constraint",
+        "description": "Specifies the usage of different threshold voltages for optimization.",
+        "value_type": "{voltage_thresholds}",
+        "constraint_type": "Optimization",
+        "syntax": "set_multi_vth_constraint <voltage_thresholds>",
+        "query": "Given the following TCL file, optimize for high performance by specifying the usage of different threshold voltages {voltage_thresholds} for the optimization.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_auto_disable_drc_nets",
+        "description": "Automatically disables DRC for certain nets to improve synthesis outcomes.",
+        "value_type": "{condition}",
+        "constraint_type": "Optimization",
+        "syntax": "set_auto_disable_drc_nets <condition>",
+        "query": "Given the following TCL file, optimize for minimal area by automatically disabling DRC for nets that meet the {condition}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_cell_degradation",
+        "description": "Adjusts the cell degradation parameters for aging effects.",
+        "value_type": "{parameters}",
+        "constraint_type": "Optimization",
+        "syntax": "set_cell_degradation <parameters>",
+        "query": "Given the following TCL file, optimize for high performance by adjusting the cell degradation parameters to {parameters}.",
+        "ppa_constraint": "high performance"
+    },
+    {
+        "command": "set_power_optimization",
+        "description": "Enables or configures various power optimization techniques such as gate resizing, Vt swapping, or power gating.",
+        "value_type": "{bool}",
+        "constraint_type": "Optimization",
+        "syntax": "set_power_optimization <enable>",
+        "query": "Given the following TCL file, optimize for low power consumption by enabling power optimization techniques.",
+        "ppa_constraint": "low power consumption"
+    },
+    {
+        "command": "set_area_group",
+        "description": "Defines area constraints for specific groups of cells to control placement density or meet floorplanning requirements.",
+        "value_type": "{group_name, cell_names}",
+        "constraint_type": "Optimization",
+        "syntax": "set_area_group <group_name> <cell_names>",
+        "query": "Given the following TCL file, optimize for minimal area by defining an area group named {group_name} for the cells {cell_name_list}.",
+        "ppa_constraint": "minimal area"
+    },
+    {
+        "command": "set_global_optimization",
+        "description": "Enables or tunes global optimization features that cross module boundaries.",
+        "value_type": "{bool}",
+        "constraint_type": "Optimization",
+        "syntax": "set_global_optimization <enable>",
+        "query": "Given the following TCL file, optimize for low power consumption by enabling global optimization features that cross module boundaries.",
+        "ppa_constraint": "low power consumption"
+    }
+]
