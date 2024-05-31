@@ -1,0 +1,16 @@
+[
+    {
+        "command": "set_dont_touch",
+        "description": "Prevents the synthesis tool from optimizing or moving specified instances or nets.",
+        "category": "Standard cell constraints",
+        "ppa_constraint": "high performance",
+        "query": "Given the following TCL file, optimize for high performance by ensuring that the specified instances or nets {string} are not optimized or moved by the synthesis tool."
+    },
+    {
+        "command": "set_dont_use",
+        "description": "Specifies library cells that the synthesis tool should not use.",
+        "category": "Standard cell constraints",
+        "ppa_constraint": "low power consumption",
+        "query": "Given the following TCL file, optimize for low power consumption by specifying that the synthesis tool should not use the {string} library cell."
+    }
+]
