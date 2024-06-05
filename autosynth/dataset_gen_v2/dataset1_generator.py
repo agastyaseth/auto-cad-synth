@@ -5,7 +5,7 @@ from huggingface_hub import login
 
 
 # Authentication with Hugging Face Hub
-# hf_token = "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"
+# hf_token = "*"
 # login(hf_token)
 
 # Load tokenizer and model
