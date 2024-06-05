@@ -1,4 +1,0 @@
-#Standard cell constraints
-set_dont_touch: Prevents the synthesis tool from optimizing or moving specified instances or nets.
-set_dont_use: Specifies library cells that the synthesis tool should not use.
-
