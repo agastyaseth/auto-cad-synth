@@ -6,7 +6,7 @@ import random
 client = OpenAI(
     organization='org-VR0PrQFpMVbh4ELxxSHDbdb7',
     project='proj_P3nuY0NXfQnZVaD2tmJPdSbi',
-    api_key='sk-proj-P7SKNKhDWsWGmewN2FDaT3BlbkFJKcN4foFiI6oZ3jddpMBY'
+    api_key=''
 )
 
 def generate_user_query(command, description, syntax, category):
